@@ -1,0 +1,7 @@
+PinsToBus	KEYWORD1
+readByte	KEYWORD2
+writeByte	KEYWORD2
+readWord	KEYWORD2
+writeWord	KEYWORD2
+readDword	KEYWORD2
+writeDword	KEYWORD2
