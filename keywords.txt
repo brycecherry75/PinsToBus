@@ -5,3 +5,6 @@ readWord	KEYWORD2
 writeWord	KEYWORD2
 readDword	KEYWORD2
 writeDword	KEYWORD2
+writeByte_OC	KEYWORD2
+writeWord_OC	KEYWORD2
+writeDword_OC	KEYWORD2

@@ -13,6 +13,10 @@ class PinsToBusClass {
   uint32_t readDword(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required);
   void writeDword(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint32_t data);
 
+  void writeByte_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint8_t data);
+  void writeWord_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint16_t data);
+  void writeDword_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint32_t data);
+
 };
 
 extern PinsToBusClass PinsToBus;

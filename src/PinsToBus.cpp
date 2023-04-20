@@ -291,4 +291,169 @@ void PinsToBusClass::writeDword(const uint8_t *pins, uint8_t pins_required, bool
   }
 }
 
+void PinsToBusClass::writeByte_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint8_t data) {
+  if (pins_required > 0 && pins_required <= 8) {
+    uint8_t mask = 1;
+#if defined(__PGMSPACE_H_)
+    if (progmem_required == true) {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pgm_read_byte_near(pins + i);
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+    else {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pins[i];
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+#else
+    for (int i = 0; i < pins_required; i++) {
+      uint8_t pin_to_write = pins[i];
+      if (DirectionChangeRequired == true) {
+        pinMode(pin_to_write, INPUT);
+        digitalWrite(pin_to_write, LOW);
+      }
+      if ((data & mask) != 0) {
+        pinMode(pin_to_write, INPUT);
+      }
+      else {
+        pinMode(pin_to_write, OUTPUT);
+      }
+      mask <<= 1;
+    }
+#endif
+  }
+}
+
+void PinsToBusClass::writeWord_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint16_t data) {
+  if (pins_required > 0 && pins_required <= 16) {
+#if defined(__PGMSPACE_H_)
+    uint16_t mask = 1;
+    if (progmem_required == true) {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pgm_read_byte_near(pins + i);
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+    else {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pins[i];
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+#else
+    for (int i = 0; i < pins_required; i++) {
+      uint8_t pin_to_write = pins[i];
+      if (DirectionChangeRequired == true) {
+        pinMode(pin_to_write, INPUT);
+        digitalWrite(pin_to_write, LOW);
+      }
+      if ((data & mask) != 0) {
+        pinMode(pin_to_write, INPUT);
+      }
+      else {
+        pinMode(pin_to_write, OUTPUT);
+      }
+      mask <<= 1;
+    }
+#endif
+  }
+}
+
+void PinsToBusClass::writeDword_OC(const uint8_t *pins, uint8_t pins_required, bool DirectionChangeRequired, bool progmem_required, uint32_t data) {
+  if (pins_required > 0 && pins_required <= 32) {
+#if defined(__PGMSPACE_H_)
+    uint32_t mask = 1;
+    if (progmem_required == true) {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pgm_read_byte_near(pins + i);
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+    else {
+      for (int i = 0; i < pins_required; i++) {
+        uint8_t pin_to_write = pins[i];
+        if (DirectionChangeRequired == true) {
+          pinMode(pin_to_write, INPUT);
+          digitalWrite(pin_to_write, LOW);
+        }
+        if ((data & mask) != 0) {
+          pinMode(pin_to_write, INPUT);
+        }
+        else {
+          pinMode(pin_to_write, OUTPUT);
+        }
+        mask <<= 1;
+      }
+    }
+#else
+    for (int i = 0; i < pins_required; i++) {
+      uint8_t pin_to_write = pins[i];
+      if (DirectionChangeRequired == true) {
+        pinMode(pin_to_write, INPUT);
+        digitalWrite(pin_to_write, LOW);
+      }
+      if ((data & mask) != 0) {
+        pinMode(pin_to_write, INPUT);
+      }
+      else {
+        pinMode(pin_to_write, OUTPUT);
+      }
+      mask <<= 1;
+    }
+#endif
+  }
+}
+
 PinsToBusClass PinsToBus;
